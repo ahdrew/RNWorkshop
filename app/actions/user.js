@@ -2,9 +2,12 @@ import * as types from './types';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const KEY_AUTH = 'AUTH';
-export function signInSuccess(){
+const KEY_USERNAME='USERNAME';
+
+export function signInSuccess(username){
 	return {
-			type: types.SIGN_IN
+            type: types.SIGN_IN,
+            data: username
 		}
 }
 
@@ -20,10 +23,25 @@ export function loadAuthSuccess(signIn){
     }
 }
 
-export function signIn(){
+export function updateProfileSuccess(profile){
+    return {
+        type: types.UPDATE_PROFILE_SUCCESS,
+        data: profile
+    }
+}
+
+export function updateProfile(profile){
+    return async (dispatch)=>{
+        await AsyncStorage.setItem(KEY_USERNAME,profile.username)
+        dispatch(updateProfileSuccess(profile));
+    }
+    
+}
+export function signIn(username){
     return async (dispatch)=>{
         await AsyncStorage.setItem(KEY_AUTH,"1")
-		dispatch(signInSuccess());
+        await AsyncStorage.setItem(KEY_USERNAME,username)
+		dispatch(signInSuccess(username));
 	
 	}
 }
@@ -31,6 +49,7 @@ export function signIn(){
 export function signOut(){
     return async (dispatch)=>{
         await AsyncStorage.setItem(KEY_AUTH,"0")
+        await AsyncStorage.setItem(KEY_USERNAME,"")
 		dispatch(signOutSuccess());
 	
 	}
@@ -42,6 +61,8 @@ export function loadAuth(){
         if(value == null)
             value = "0";
         value = value == "1" ? true : false;
-        dispatch(loadAuthSuccess(value));
+        let username = await AsyncStorage.getItem(KEY_USERNAME);
+        username == null ? "": username;
+        dispatch(loadAuthSuccess({value:value,username:username}));
     }
 }

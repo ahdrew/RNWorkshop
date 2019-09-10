@@ -37,10 +37,16 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Test QR</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Touch ID Test to show Touch ID working in a custom app</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Test QR</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Test QR</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

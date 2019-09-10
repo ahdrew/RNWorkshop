@@ -27,11 +27,8 @@ target 'RNWorkshop' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
-  pod 'react-native-config', :path => '../node_modules/react-native-config'
 
-  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
   
   pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
 

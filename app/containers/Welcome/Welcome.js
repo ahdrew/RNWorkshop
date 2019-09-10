@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,NativeModules,Button,Alert} from 'react-native';
+import {ActivityIndicator,Platform, StyleSheet, Text, View,NativeModules,Button,Alert} from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
@@ -7,6 +7,7 @@ import { ActionCreators } from '../../actions';
 import MapView from '../../components/Map';
 import styles from '../../styles/common'
 import Config from 'react-native-config'
+import {createLoadingSelector} from '../../api/selector';
 
 
 var TouchIdManager = NativeModules.TouchIdManager
@@ -46,12 +47,14 @@ class Welcome extends Component {
 	render() {
     return <View style={styles.container}>
     	<Text style={styles.welcome}>{Config.ENV_NAME}</Text>
+		<Text style={styles.welcome}>Hi {this.props.user.username}</Text>
     	<Button title="Show Web View" onPress={this.showWebview}></Button>
     	<Button title="Show Touch ID" onPress={this.startTouchID}></Button>
     	<Button title="Next Page" onPress={this.goToPageTwo}></Button>
 		<Button title="Map Page" onPress={this.goToMapPage}></Button>
 		<Text>{this.props.app.lang}</Text>
 		<Text>{this.props.app.currency}</Text>
+		{this.props.isFetching && <ActivityIndicator size="large" color="#0000ff" />}
     	</View>
     // return <MapView style={{ flex: 1 }} />;
   }
@@ -61,9 +64,12 @@ Welcome.propTypes = {
 	loadConfig: PropTypes.func
 }
 
+const loadingSelector = createLoadingSelector(['App/LOAD_CONFIG'])
 function mapStateToProps(state) {
   return {
-    app: state.app
+	app: state.app,
+	user: state.user,
+	isFetching: loadingSelector(state)
   };
 }
 

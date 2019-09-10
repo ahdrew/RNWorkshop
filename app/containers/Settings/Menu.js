@@ -10,13 +10,14 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 let menuData = [
     {title:'Lang',key:'LANG'},
+    {title:'User Profile',key:'USERPROFILE'},
     {title:'Logout',key:'LOGOUT'}
 ];
 
 class Menu extends Component {
 
 	static navigationOptions = {
-		title: 'Language',
+		title: 'Settings',
 	};
 
 	constructor(props){
@@ -36,6 +37,9 @@ class Menu extends Component {
         switch(key){
             case 'LANG':
                 this.props.navigation.navigate('Lang');
+                break;
+            case 'USERPROFILE':
+                this.props.navigation.navigate('UserProfile');
                 break;
             case 'LOGOUT':
                 this.signOut();

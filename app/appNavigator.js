@@ -3,21 +3,25 @@ import { createSwitchNavigator,createStackNavigator, createDrawerNavigator,creat
 import Welcome from './containers/Welcome/Welcome';
 import PageTwo from './containers/Welcome/PageTwo';
 import MapPage from './containers/Welcome/MapPage';
+import QrScanner from './containers/Welcome/QrScanner';
 import LangPage from './containers/Settings/Lang';
 import SettingMenu from './containers/Settings/Menu';
 import AuthLoading from './containers/Auth/AuthLoading';
 import SignIn from './containers/Auth/SignIn';
+import UserProfile from './containers/Settings/UserProfile';
 import DragAndDrop from './containers/Playground/DragAndDrop';
 
 const HomeStack = createStackNavigator({
     Welcome: Welcome,
     PageTwo: PageTwo,
-    MapPage: MapPage
+    MapPage: MapPage,
+    // QrScanner: QrScanner
 })
 
 const SettingsStack = createStackNavigator({
     Settings: SettingMenu,
-    Lang: LangPage
+    Lang: LangPage,
+    UserProfile: UserProfile
 })
 
 export const DrawerNavigator = createDrawerNavigator({
@@ -36,7 +40,7 @@ export const DrawerNavigator = createDrawerNavigator({
 
 export const TabNavigator = createBottomTabNavigator({
     Home: HomeStack,
-    Playground: DragAndDrop,
+    QrScanner: QrScanner,
     Settings: SettingsStack
 })
 

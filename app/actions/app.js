@@ -10,7 +10,7 @@ function changeLang(lang){
 
 function loadConfigSuccess(config){
 	return {
-		type: types.LOAD_CONFIG,
+		type: types.LOAD_CONFIG_SUCCESS,
 		data: config
 	}
 }
@@ -24,6 +24,7 @@ export function toggleLang(lang){
 
 export function loadConfig(){
 	return(dispatch)=>{
+		dispatch({type:types.LOAD_CONFIG_REQUEST});
 		axios.get('http://api.pick4you.me/config').then((res)=>{
 			console.log("#####config",res.data.data);
 			dispatch(loadConfigSuccess(res.data.data));
