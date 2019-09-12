@@ -14,11 +14,13 @@ class VideoPreview extends Component {
     };
     constructor(props){
         super(props);
+        this.state = {paused:false}
     }
     componentDidMount(){
     }
 
     replayVideo = ()=>{
+        this.setState({paused:false});
         this.player.seek(0);
     }
 
@@ -39,6 +41,10 @@ class VideoPreview extends Component {
                     this.player = ref
                   }}  
                 style={styles.backgroundVideo}
+                paused={this.state.paused}
+                repeat={false}
+                onEnd={()=>{this.setState({paused:true})}}
+                resizeMode="stretch"
             />
             <View style={styles.previewPanel}>
             {replayButton}
