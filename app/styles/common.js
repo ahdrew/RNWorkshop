@@ -31,6 +31,17 @@ const styles = StyleSheet.create({
     height:30,
     marginTop:10,
     marginLeft:10
+  },
+  button: {
+    marginBottom: 30,
+    width: 260,
+    alignItems: 'center',
+    backgroundColor: '#2196F3'
+  },
+  buttonText: {
+    textAlign: 'center',
+    padding: 20,
+    color: 'white'
   }
 });
 

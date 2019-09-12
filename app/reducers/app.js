@@ -9,7 +9,7 @@ const initialState = Immutable({
 });
 
 const appReducer = {
-	app: (state:State = initialState, action:Action)=>{
+	app: (state = initialState, action)=>{
 		switch (action.type) {
 		    case types.CHANGE_LANG:
 		    	state = {...state, lang: action.data};

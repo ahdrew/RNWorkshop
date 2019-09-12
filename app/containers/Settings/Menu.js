@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,FlatList} from 'react-native';
+import {Text, View,FlatList} from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
@@ -16,63 +16,61 @@ let menuData = [
 
 class Menu extends Component {
 
-	static navigationOptions = {
-		title: 'Settings',
-	};
+  static navigationOptions = {
+    title: 'Settings',
+  };
 
-	constructor(props){
-        super(props);
-        this.renderListItem = this.renderListItem.bind(this);
-        this.signOut = this.signOut.bind(this);
-	}
-	componentDidMount(){
-        
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+
+  }
+  componentDidUpdate(prevProps) {
+    if (!this.props.user.signIn)
+      this.props.navigation.navigate('AuthLoading');
+  }
+  menuAction = (key) => {
+    console.log("#####", key);
+    switch (key) {
+      case 'LANG':
+        this.props.navigation.navigate('Lang');
+        break;
+      case 'USERPROFILE':
+        this.props.navigation.navigate('UserProfile');
+        break;
+      case 'LOGOUT':
+        this.signOut();
+        break;
+      default:
+        return;
     }
-    componentDidUpdate(prevProps){
-        if(!this.props.user.signIn)
-            this.props.navigation.navigate('AuthLoading');
-    }
-    menuAction(key){
-        console.log("#####",key);
-        switch(key){
-            case 'LANG':
-                this.props.navigation.navigate('Lang');
-                break;
-            case 'USERPROFILE':
-                this.props.navigation.navigate('UserProfile');
-                break;
-            case 'LOGOUT':
-                this.signOut();
-                break;
-            default:
-                return;
-        }
-    }
-    signOut(){
-        this.props.signOut();
-    }
-    renderListItem({item}){
-        return (
-        <TouchableOpacity style={styles.listItem} onPress={()=>this.menuAction(item.key)}>
+  }
+  signOut = () => {
+    this.props.signOut();
+  }
+  renderListItem = ({ item }) => {
+    return (
+      <TouchableOpacity style={styles.listItem} onPress={() => this.menuAction(item.key)}>
         <Text>{item.title}</Text>
-        </TouchableOpacity>
-        )
-    }
-    renderSeparator = () => {
-        return (
-          <View
-            style={styles.separator}
-          />
-        );
-      };
-    render() {
+      </TouchableOpacity>
+    )
+  }
+  renderSeparator = () => {
+    return (
+      <View
+        style={styles.separator}
+      />
+    );
+  };
+  render() {
     return <View style={styles.settingMenuContainer}>
-            <FlatList
-                data={menuData}
-                renderItem={this.renderListItem}
-                ItemSeparatorComponent={this.renderSeparator}
-            ></FlatList>
-    	</View>
+      <FlatList
+        data={menuData}
+        renderItem={this.renderListItem.bind(this)}
+        ItemSeparatorComponent={this.renderSeparator}
+      ></FlatList>
+    </View>
   }
 }
 
@@ -80,14 +78,14 @@ Menu.propTypes = {
     signOut: PropTypes.func
 }
 
-function mapStateToProps(state) {
+mapStateToProps=(state)=> {
   return {
     app: state.app,
     user: state.user
   };
 }
 
-function mapDispatchToProps(dispatch) {
+mapDispatchToProps=(dispatch)=>{
   return bindActionCreators(ActionCreators, dispatch);
 }
 

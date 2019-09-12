@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text,TextInput, View,NativeModules,Button,Alert} from 'react-native';
+import {View,Button} from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
@@ -15,8 +15,6 @@ class SignIn extends Component {
 
 	constructor(props){
 		super(props);
-    this.signIn =this.signIn.bind(this);
-    this.onTextChange = this.onTextChange.bind(this);
     this.state = {username:""};
     }
     componentDidUpdate(prevProps){
@@ -24,21 +22,19 @@ class SignIn extends Component {
             this.props.navigation.navigate('Home');
     }
 	componentDidMount(){
-		// TouchIdManager.startTouchID();
 	}
-    signIn(){
+  signIn = ()=>{
 		this.props.signIn(this.state.username);
   }
   
-  onTextChange(text){
+  onTextChange = (text)=>{
     this.setState({username:text});
   }
 	render() {
     return <View style={styles.container}>
-      <Input placeholder="Username" onChangeText={this.onTextChange} value={this.state.username}></Input>
-    	<Button title="Sign In" onPress={this.signIn}></Button>
+      <Input placeholder="Username" onChangeText={this.onTextChange.bind(this)} value={this.state.username}></Input>
+    	<Button title="Sign In" onPress={this.signIn.bind(this)}></Button>
     	</View>
-    // return <MapView style={{ flex: 1 }} />;
   }
 }
 
@@ -46,14 +42,14 @@ SignIn.propTypes = {
     signIn:PropTypes.func
 }
 
-function mapStateToProps(state) {
+mapStateToProps=(state)=> {
   return {
     app: state.app,
     user: state.user
   };
 }
 
-function mapDispatchToProps(dispatch) {
+mapDispatchToProps=(dispatch)=>{
   return bindActionCreators(ActionCreators, dispatch);
 }
 

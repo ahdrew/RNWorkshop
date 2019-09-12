@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
 import styles from '../../styles/common'
 import {Input,Button} from 'react-native-elements';
-import { throwStatement } from '@babel/types';
 
 class UserProfile extends Component {
 
@@ -19,7 +18,6 @@ class UserProfile extends Component {
 		this.state = {username:this.props.user.username};
 	}
 	componentDidMount(){
-		// TouchIdManager.startTouchID();
 	}
 	componentDidUpdate(prevProps){
 		if(prevProps.user.username != this.props.user.username)
@@ -39,14 +37,14 @@ UserProfile.propTypes = {
 	updateProfile: PropTypes.func
 }
 
-function mapStateToProps(state) {
+mapStateToProps=(state)=> {
   return {
 	app: state.app,
 	user: state.user
   };
 }
 
-function mapDispatchToProps(dispatch) {
+mapDispatchToProps=(dispatch)=>{
   return bindActionCreators(ActionCreators, dispatch);
 }
 

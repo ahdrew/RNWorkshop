@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,NativeModules,Button,Alert} from 'react-native';
+import {Text, View,Button} from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
@@ -14,17 +14,16 @@ class Lang extends Component {
 
 	constructor(props){
 		super(props);
-		this.changeLang =this.changeLang.bind(this);
 	}
 	componentDidMount(){
 		// TouchIdManager.startTouchID();
 	}
-    changeLang(){
+    changeLang=()=>{
 		this.props.toggleLang(this.props.app.lang);
 	}
 	render() {
     return <View style={styles.container}>
-    	<Button title="Change Lang" onPress={this.changeLang}></Button>
+    	<Button title="Change Lang" onPress={this.changeLang.bind(this)}></Button>
 		<Text>{this.props.app.lang}</Text>
     	</View>
     // return <MapView style={{ flex: 1 }} />;
@@ -35,13 +34,13 @@ Lang.propTypes = {
 	toggleLang: PropTypes.func
 }
 
-function mapStateToProps(state) {
+mapStateToProps=(state)=> {
   return {
     app: state.app
   };
 }
 
-function mapDispatchToProps(dispatch) {
+mapDispatchToProps=(dispatch)=>{
   return bindActionCreators(ActionCreators, dispatch);
 }
 

@@ -9,7 +9,7 @@ const initialState = Immutable({
 });
 
 const userReducer = {
-	user: (state:State = initialState, action:Action)=>{
+	user: (state = initialState, action)=>{
 		switch (action.type) {
 		    case types.SIGN_IN:
 		    	state = {...state, signIn: true, username:action.data};

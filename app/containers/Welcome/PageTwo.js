@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,NativeModules,Button} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
-import styles from '../../styles/common';
 import WebView from '../../components/WebView';
 
 
@@ -19,13 +17,13 @@ class PageTwo extends Component {
   }
 }
 
-function mapStateToProps(state) {
+mapStateToProps=(state)=> {
   return {
     app: state.app
   };
 }
 
-function mapDispatchToProps(dispatch) {
+mapDispatchToProps=(dispatch)=>{
   return bindActionCreators(ActionCreators, dispatch);
 }
 
