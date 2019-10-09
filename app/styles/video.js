@@ -6,36 +6,38 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
     preview: {
-        flex: 2,
+        flex: 0,
         justifyContent: 'flex-end',
         alignItems: 'center',
+        aspectRatio:3/4
     },
     capture: {
         flex: 0,
         backgroundColor: '#fff',
         borderRadius: 5,
-        padding: 15,
-        paddingHorizontal: 20,
+        padding: 0,
+        paddingHorizontal: 5,
         alignSelf: 'center',
-        margin: 20,
+        margin: 0,
     },
     previewPanel: {
         flex: 0,
         backgroundColor: '#fff',
-        padding: 15,
-        paddingHorizontal: 20,
+        padding: 0,
+        paddingHorizontal: 5,
         alignSelf: 'center',
-        margin: 20,
+        margin: 5,
         flexDirection:'row'
     },
     previewButton: {
-        margin:10,
+        paddingHorizontal: 10,
         flex:0
     },
-    backgroundVideo: {
-        flex: 2,
+    previewVideo: {
+        flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
+        // aspectRatio:3/4
     },
     timerBackground:{
         backgroundColor:'rgba(52, 52, 52, 0.7)',

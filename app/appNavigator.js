@@ -12,17 +12,35 @@ import UserProfile from './containers/Settings/UserProfile';
 import DragAndDrop from './containers/Playground/DragAndDrop';
 import VideoRecord from './containers/Video/VideoRecord';
 import VideoPreview from './containers/Video/VideoPreview';
+import ImagePreview from './containers/Video/ImagePreview';
+import VideoBattle from './containers/Video/VideoBattle';
+import VideoBattles from './containers/Video/VideoBattles';
 import {Icon} from 'react-native-elements';
 const VideoStack = createStackNavigator({
     VideoRecord: VideoRecord,
-    VideoPreview: VideoPreview
+    VideoPreview: VideoPreview,
+    ImagePreview: ImagePreview
+},{
+    mode:'modal',
+    // headerMode:'none'
 })
+VideoStack.navigationOptions = ({navigation})=>{
+    let tabBarVisible = false;
+//   if (navigation.state.index > 0) {
+//     tabBarVisible = false;
+//   }
+
+  return {
+    tabBarVisible,
+  };
+}
 
 const HomeStack = createStackNavigator({
     Home: Home,
     PageTwo: PageTwo,
     MapPage: MapPage,
-    QrScanner: QrScanner
+    // QrScanner: QrScanner,
+    // VideoBattle: VideoBattle
     // Video: VideoRecord,
     // VideoPreview: VideoPreview
 })
@@ -76,13 +94,26 @@ export const TabNavigator = createBottomTabNavigator({
         tabBarOptions: {
             activeTintColor: 'tomato',
             inactiveTintColor: 'gray',
+        },
+        tabBarOnPress: ({navigation,defaultHandler})=>{
+            if(navigation.state.routeName == 'Video')
+                navigation.navigate('VideoModal');
+            else
+                defaultHandler();
         }
     })
 })
 
+export const TestNavigator = createStackNavigator({
+    Tab: TabNavigator,
+    QrScanner: QrScanner,
+    VideoModal:VideoStack,
+    VideoBattle:VideoBattles,
+},{mode:'modal',headerMode:'none'})
+
 export const RootNavigator = createSwitchNavigator({
     Auth:SignIn,
-    App: TabNavigator,
+    App: TestNavigator,
     AuthLoading:AuthLoading
 },{
     initialRouteName:'AuthLoading'

@@ -6,11 +6,12 @@ import { ActionCreators } from '../../actions';
 import styles from '../../styles/video';
 import { withNavigationFocus } from 'react-navigation';
 import { RNCamera } from 'react-native-camera';
+import { Header } from 'react-native-elements';
 
 
 class QrScanner extends Component {
   static navigationOptions = {
-    title: 'QrScanner',
+    title: 'QrScanner'
   };
   constructor(props) {
     super(props);
@@ -27,6 +28,10 @@ class QrScanner extends Component {
     const { isFocused } = this.props
     return (
       <View style={styles.container}>
+        <Header barStyle="light-content" 
+        containerStyle={{backgroundColor:'white'}} 
+        leftComponent={{icon:'close',onPress:()=>{this.props.navigation.goBack()}}}
+        centerComponent={{text:'QrScanner',style:{fontWeight:'bold'}}}/>
         {isFocused && <RNCamera style={styles.preview}
           onBarCodeRead={(e) => { console.log(e.data); this.setState({ result: e.data }) }}
           barCodeTypes={[RNCamera.Constants.BarCodeType.qr]}

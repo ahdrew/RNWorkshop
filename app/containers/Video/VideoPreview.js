@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
+import {View, Platform} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
@@ -7,6 +7,8 @@ import styles from '../../styles/video';
 import Video from 'react-native-video';
 import {Button} from 'react-native-elements';
 import CameraRoll from '@react-native-community/cameraroll';
+import Share from 'react-native-share';
+import RNFetchBlob from 'rn-fetch-blob';
 
 class VideoPreview extends Component {
     static navigationOptions = {
@@ -40,11 +42,11 @@ class VideoPreview extends Component {
                 ref={(ref) => {
                     this.player = ref
                   }}  
-                style={styles.backgroundVideo}
+                style={styles.previewVideo}
                 paused={this.state.paused}
                 repeat={false}
                 onEnd={()=>{this.setState({paused:true})}}
-                resizeMode="stretch"
+                resizeMode="contain"
             />
             <View style={styles.previewPanel}>
             {replayButton}
