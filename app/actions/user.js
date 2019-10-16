@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 const KEY_AUTH = 'AUTH';
 const KEY_USERNAME='USERNAME';
+const KEY_PROFILE_IMAGE = 'PROFILE_IMAGE';
 
 export function signInSuccess(username){
 	return {
@@ -37,6 +38,21 @@ export function updateProfile(profile){
     }
     
 }
+
+export function updateProfilePicture(profilePicture) {
+    return async dispatch => {
+      await AsyncStorage.setItem(KEY_PROFILE_IMAGE, profilePicture);
+      dispatch(updateProfilePictureSuccess(profilePicture));
+    };
+  }
+  
+  export function updateProfilePictureSuccess(profilePicture) {
+    return {
+      type: types.UPDATE_PROFILE_PICTURE,
+      profilePicture: profilePicture,
+    };
+  }
+
 export function signIn(username){
     return async (dispatch)=>{
         await AsyncStorage.setItem(KEY_AUTH,"1")

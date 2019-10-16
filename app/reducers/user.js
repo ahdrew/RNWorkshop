@@ -5,7 +5,8 @@ import Immutable from 'seamless-immutable';
 
 const initialState = Immutable({
 	  signIn:false,
-	  username:''
+	  username:'',
+	  profilePicture: null
 });
 
 const userReducer = {
@@ -21,6 +22,9 @@ const userReducer = {
 					state = {...state, signIn:action.data.value, username:action.data.username};
 			case types.UPDATE_PROFILE_SUCCESS:
 					state = {...state, username: action.data.username};
+			case types.UPDATE_PROFILE_PICTURE:
+				state = {...state, profilePicture: action.profilePicture}
+				return state;
 		    default:
 		      return state;
 		  }

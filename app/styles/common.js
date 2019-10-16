@@ -42,7 +42,25 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 20,
     color: 'white'
-  }
+  },
+  profileImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+  },
+  defaultProfileImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    borderWidth: 1,
+    backgroundColor: 'lightgray',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  uploadText: {
+    textAlign: 'center',
+    fontSize: 14
+  },
 });
 
 
