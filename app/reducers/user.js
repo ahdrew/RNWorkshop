@@ -6,7 +6,8 @@ import Immutable from 'seamless-immutable';
 const initialState = Immutable({
 	  signIn:false,
 	  username:'',
-	  profilePicture: null
+	  profilePicture: null,
+	  mime: null
 });
 
 const userReducer = {
@@ -20,10 +21,12 @@ const userReducer = {
                     return state;
             case types.LOAD_AUTH:
 					state = {...state, signIn:action.data.value, username:action.data.username};
+				return state;
 			case types.UPDATE_PROFILE_SUCCESS:
 					state = {...state, username: action.data.username};
+				return state;
 			case types.UPDATE_PROFILE_PICTURE:
-				state = {...state, profilePicture: action.profilePicture}
+				state = {...state, profilePicture: action.profilePicture.data, mime: action.profilePicture.mime}
 				return state;
 		    default:
 		      return state;

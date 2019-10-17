@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 const KEY_AUTH = 'AUTH';
 const KEY_USERNAME='USERNAME';
 const KEY_PROFILE_IMAGE = 'PROFILE_IMAGE';
+const KEY_PROFILE_IMAGE_MIME = 'PROFILE_IMAGE_MIME';
 
 export function signInSuccess(username){
 	return {
@@ -41,7 +42,8 @@ export function updateProfile(profile){
 
 export function updateProfilePicture(profilePicture) {
     return async dispatch => {
-      await AsyncStorage.setItem(KEY_PROFILE_IMAGE, profilePicture);
+      await AsyncStorage.setItem(KEY_PROFILE_IMAGE, profilePicture.data);
+      await AsyncStorage.setItem(KEY_PROFILE_IMAGE_MIME, profilePicture.mime);
       dispatch(updateProfilePictureSuccess(profilePicture));
     };
   }

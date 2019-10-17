@@ -119,8 +119,8 @@ class UserProfile extends Component {
             <Image
               style={styles.profileImage}
               source={{
-                uri: `data:${this.props.user.profilePicture.mime};base64,${
-                  this.props.user.profilePicture.data
+                uri: `data:${this.props.user.mime};base64,${
+                  this.props.user.profilePicture
                 }`,
               }}
             />
@@ -173,7 +173,8 @@ class UserProfile extends Component {
 
 UserProfile.propTypes = {
 	toggleLang: PropTypes.func,
-	updateProfile: PropTypes.func
+	updateProfile: PropTypes.func,
+	updateProfilePicture: PropTypes.func
 }
 
 mapStateToProps=(state)=> {
