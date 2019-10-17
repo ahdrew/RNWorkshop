@@ -50,6 +50,9 @@ class Home extends Component {
 	goToVideoBattle=()=>{
 		this.props.navigation.navigate('VideoBattle');
 	}
+	goToVideoList=()=>{
+		this.props.navigation.navigate('VideoList');
+	}
 	render() {
     return <View style={styles.container}>
     	<Text style={styles.welcome}>{Config.ENV_NAME}</Text>
@@ -59,6 +62,7 @@ class Home extends Component {
     	<Button title="Next Page" onPress={this.goToPageTwo.bind(this)}></Button>
 		<Button title="Map Page" onPress={this.goToMapPage.bind(this)}></Button>
 		<Button title="Video Battle" onPress={this.goToVideoBattle.bind(this)}></Button>
+		<Button title="Video List" onPress={this.goToVideoList.bind(this)}></Button>
 		<Text>{this.props.app.lang}</Text>
 		<Text>{this.props.app.currency}</Text>
 		{this.props.isFetching && <ActivityIndicator size="large" color="#0000ff" />}

@@ -84,6 +84,11 @@ const styles = StyleSheet.create({
     progressText: {
         textAlign: 'center'
     },
+    backgroundVideo: {
+        flex: 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });
 
 export default styles
