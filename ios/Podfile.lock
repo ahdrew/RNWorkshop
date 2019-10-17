@@ -69,6 +69,8 @@ PODS:
     - React
   - react-native-config (0.11.7):
     - React
+  - react-native-orientation-locker (1.1.6):
+    - React
   - react-native-video (5.0.2):
     - React
     - react-native-video/Video (= 5.0.2)
@@ -135,6 +137,7 @@ DEPENDENCIES:
   - react-native-camera (from `../node_modules/react-native-camera`)
   - "react-native-cameraroll (from `../node_modules/@react-native-community/cameraroll`)"
   - react-native-config (from `../node_modules/react-native-config`)
+  - react-native-orientation-locker (from `../node_modules/react-native-orientation-locker`)
   - react-native-video (from `../node_modules/react-native-video`)
   - react-native-view-shot (from `../node_modules/react-native-view-shot`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -190,6 +193,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/cameraroll"
   react-native-config:
     :path: "../node_modules/react-native-config"
+  react-native-orientation-locker:
+    :path: "../node_modules/react-native-orientation-locker"
   react-native-video:
     :path: "../node_modules/react-native-video"
   react-native-view-shot:
@@ -249,6 +254,7 @@ SPEC CHECKSUMS:
   react-native-camera: 203091b4bf99d48b788a0682ad573e8718724893
   react-native-cameraroll: 9fa61cb36a9cc6d5109b591466a9f985b264c27b
   react-native-config: 55548054279d92e0e4566ea15a8b9b81028ec342
+  react-native-orientation-locker: 23918c400376a7043e752c639c122fcf6bce8f1c
   react-native-video: 961749da457e73bf0b5565edfbaffc25abfb8974
   react-native-view-shot: a94dce9b44d7846edd1204ad6f0bd88f64c29cc0
   React-RCTActionSheet: b0f1ea83f4bf75fb966eae9bfc47b78c8d3efd90
@@ -272,6 +278,6 @@ SPEC CHECKSUMS:
   RSKImageCropper: 98296ad26b41753f796b6898d015509598f13d97
   yoga: 312528f5bbbba37b4dcea5ef00e8b4033fdd9411
 
-PODFILE CHECKSUM: 6f9a1fb1b84b316905868584a7405647dbdd6c47
+PODFILE CHECKSUM: 9984f1f89d69113f830a134ad23b2ec413adddfa
 
 COCOAPODS: 1.7.5

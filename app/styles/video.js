@@ -15,10 +15,13 @@ const styles = StyleSheet.create({
         flex: 0,
         backgroundColor: '#fff',
         borderRadius: 5,
-        padding: 0,
-        paddingHorizontal: 5,
-        alignSelf: 'center',
-        margin: 0,
+        padding: 22,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        // padding: 0,
+        // paddingHorizontal: 5,
+        // alignSelf: 'center',
+        // margin: 0,
     },
     previewPanel: {
         flex: 0,
@@ -53,7 +56,34 @@ const styles = StyleSheet.create({
         marginLeft:10,
         marginRight:10,
         
-    }
+    },
+    overlay: {
+        backgroundColor: 'gray',
+        opacity: 0.4,
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        left: 0,
+        bottom: 0,
+        height: '100%',
+    },
+    landscapeContainer: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        left: 0,
+        bottom: 0,
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    landscapeText: {
+        fontSize: 18,
+        color: 'white',
+    },
+    progressText: {
+        textAlign: 'center'
+    },
 });
 
 export default styles
