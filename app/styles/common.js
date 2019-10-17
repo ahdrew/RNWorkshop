@@ -61,6 +61,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 14
   },
+  chartContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f5fcff"
+  }
 });
 
 

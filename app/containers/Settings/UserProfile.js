@@ -8,6 +8,31 @@ import styles from '../../styles/common'
 import {Input,Button} from 'react-native-elements';
 import ImagePicker from 'react-native-image-crop-picker';
 
+import {VictoryLine, VictoryGroup} from 'victory-native';
+import CircleMarker from './CircleMarker';
+
+
+const CURRENT_POINTS = 2500;
+
+const SILVER = 500;
+const MID_GOLD = 1500;
+const GOLD = 2000;
+const MID_PREMIUM = 3000;
+const PREMIUM = 3500;
+
+const superPoints = [
+  {x: 0, y: 0},
+  {x: 10, y: 10},
+
+  {x: 59, y: 59},
+  {x: 159, y: 59},
+  {x: 209, y: 109},
+  {x: 309, y: 109},
+  {x: 359, y: 159},
+];
+
+const initPoints = [{x: 0, y: 0}, {x: 10, y: 10}];
+
 class UserProfile extends Component {
 
 	static navigationOptions = {
@@ -19,9 +44,12 @@ class UserProfile extends Component {
 		this.state = {
 			username:this.props.user.username,
 			profilePicture: this.props.user.profilePicture,
+			chartData: initPoints,
+			points: 0,
 		};
 	}
 	componentDidMount(){
+		this.loadCoordinates(CURRENT_POINTS);
 	}
 	componentDidUpdate(prevProps){
 		if(prevProps.user.username != this.props.user.username)
@@ -47,6 +75,43 @@ class UserProfile extends Component {
 		  });
 	  };
 
+
+  loadCoordinates = currentPoints => {
+    let numberOfCoordinates = currentPoints / 10;
+    let coordinates = initPoints;
+    let points = 0;
+    for (let i = 0; i < numberOfCoordinates; i++) {
+      points += 10;
+      coordinates = this.addPoints(points, coordinates);
+    }
+    this.setState({
+      chartData: coordinates,
+      points: currentPoints,
+    });
+  };
+
+  addPoints = (newPoints, coordinates) => {
+    let newCoordinates = [...coordinates];
+    let lastCoordinate = newCoordinates[newCoordinates.length - 1];
+    let newX = lastCoordinate.x,
+      newY = lastCoordinate.y;
+
+    if (
+      // horizontal line
+      (newPoints >= SILVER && newPoints < MID_GOLD) ||
+      (newPoints >= GOLD && newPoints < MID_PREMIUM)
+    ) {
+      newX = lastCoordinate.x + 1;
+    } else {
+      newY = lastCoordinate.y + 1;
+      newX = lastCoordinate.x + 1;
+    }
+
+    newCoordinates.push({x: newX, y: newY});
+    return newCoordinates;
+  };
+
+
 	render() {
     return <View style={styles.container}>
 		 {this.props.user.profilePicture ? (
@@ -69,6 +134,38 @@ class UserProfile extends Component {
         )}
     	<Input placeholder="Username" onChangeText={(text)=>{this.setState({username:text})}} value={this.state.username} ></Input>
 		<Button title="Update" onPress={()=>{this.props.updateProfile({username:this.state.username})}}></Button>
+
+		
+        <View style={styles.chartContainer}>
+		
+          <VictoryGroup domainPadding={50}>
+            <VictoryLine
+              style={{
+                data: {
+                  stroke: '#3F0F54',
+                  strokeWidth: 5,
+                },
+              }}
+              data={superPoints}
+            />
+            <VictoryLine
+              animate={{
+                duration: 1000,
+                easing: 'exp',
+              }}
+              style={{
+                data: {
+                  stroke: '#2AE2A3',
+                  // opacity: 0.5,
+                  strokeWidth: 5,
+                },
+              }}
+              data={this.state.chartData}
+              dataComponent={<CircleMarker />}
+            />
+          </VictoryGroup>
+		  <Text>Current Points: {this.state.points}</Text>
+        </View>
     	</View>
     // return <MapView style={{ flex: 1 }} />;
   }
