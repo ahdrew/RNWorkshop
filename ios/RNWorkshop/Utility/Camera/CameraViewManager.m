@@ -1,19 +1,18 @@
 // CameraViewManager.m
-#import <MapKit/MapKit.h>
-
-#import <React/RCTViewManager.h>
-#import "CameraView.h"
-
-@interface CameraViewManager : RCTViewManager
-@end
+#import "CameraViewManager.h"
+#import "ViewController.h"
+#import "AppDelegate.h"
 
 @implementation CameraViewManager
 
-RCT_EXPORT_MODULE(CameraView)
+RCT_EXPORT_MODULE(CameraViewManager)
 
-- (UIView *)view
+RCT_EXPORT_METHOD(showCameraView)
 {
-  return [[CameraView alloc] init];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    self.viewController = [[ViewController alloc] init];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate.window.rootViewController presentViewController:self.viewController animated:YES completion:nil];
+  });
 }
-
 @end

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ActivityIndicator, Text, View,NativeModules,Button,Alert} from 'react-native';
+import { ActivityIndicator, Text, View, NativeModules, Button, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
@@ -54,8 +54,8 @@ class Home extends Component {
 	goToVideoList=()=>{
 		this.props.navigation.navigate('VideoList');
     }
-    goToCameraView = () => {
-		CameraViewManager.showCameraView();
+    showCameraView = () => {
+        CameraViewManager.showCameraView();
     }
 	render() {
     return <View style={styles.container}>
@@ -67,7 +67,7 @@ class Home extends Component {
 		<Button title="Map Page" onPress={this.goToMapPage.bind(this)}></Button>
 		<Button title="Video Battle" onPress={this.goToVideoBattle.bind(this)}></Button>
 		<Button title="Video List" onPress={this.goToVideoList.bind(this)}></Button>
-		<Button title="Camera View" onPress={this.goToCameraView.bind(this)}></Button>
+        <Button title="Camera View" onPress={this.showCameraView.bind(this)}></Button>
 		<Text>{this.props.app.lang}</Text>
 		<Text>{this.props.app.currency}</Text>
 		{this.props.isFetching && <ActivityIndicator size="large" color="#0000ff" />}

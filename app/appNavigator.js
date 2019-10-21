@@ -16,7 +16,6 @@ import ImagePreview from './containers/Video/ImagePreview';
 import VideoBattle from './containers/Video/VideoBattle';
 import VideoBattles from './containers/Video/VideoBattles';
 import VideoList from './containers/Video/VideoList';
-import CameraView from './components/CameraView';
 import {Icon} from 'react-native-elements';
 const VideoStack = createStackNavigator({
     VideoRecord: VideoRecord,
@@ -113,7 +112,6 @@ export const TestNavigator = createStackNavigator({
     VideoModal:VideoStack,
     VideoBattle:VideoBattles,
     VideoList: VideoList,
-    CameraView: CameraView,
 },{mode:'modal',headerMode:'none'})
 
 export const RootNavigator = createSwitchNavigator({

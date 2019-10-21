@@ -136,7 +136,7 @@
 }
 
 - (NSString *)exprotVideoWithAudio:(NSString *)videoURL secondAsset:(NSString *)audioURL saveFileName:(NSString *)fileName{
-    
+    /*
     //创建一个混合实例
     AVMutableComposition *compositionM = [[AVMutableComposition alloc] init];
     
@@ -155,7 +155,7 @@
     AVMutableCompositionTrack *audioTrack = [compositionM addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
     [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration) ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:kCMTimeZero error:nil];
     NSLog(@"音频的时间==%lld",audioAsset.duration.value / 44100);
-    
+    */
     //创建输出路径
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4",fileName]];
     NSLog(@"%@",path);
