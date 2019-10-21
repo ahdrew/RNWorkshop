@@ -12,6 +12,7 @@ import {Icon} from 'react-native-elements';
 
 var TouchIdManager = NativeModules.TouchIdManager
 var WebViewManager = NativeModules.PruWebViewManager
+var CameraViewManager = NativeModules.CameraViewManager
 
 class Home extends Component {
 
@@ -52,7 +53,10 @@ class Home extends Component {
 	}
 	goToVideoList=()=>{
 		this.props.navigation.navigate('VideoList');
-	}
+    }
+    goToCameraView = () => {
+		CameraViewManager.showCameraView();
+    }
 	render() {
     return <View style={styles.container}>
     	<Text style={styles.welcome}>{Config.ENV_NAME}</Text>
@@ -63,6 +67,7 @@ class Home extends Component {
 		<Button title="Map Page" onPress={this.goToMapPage.bind(this)}></Button>
 		<Button title="Video Battle" onPress={this.goToVideoBattle.bind(this)}></Button>
 		<Button title="Video List" onPress={this.goToVideoList.bind(this)}></Button>
+		<Button title="Camera View" onPress={this.goToCameraView.bind(this)}></Button>
 		<Text>{this.props.app.lang}</Text>
 		<Text>{this.props.app.currency}</Text>
 		{this.props.isFetching && <ActivityIndicator size="large" color="#0000ff" />}
